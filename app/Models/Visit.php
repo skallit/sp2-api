@@ -11,6 +11,8 @@ class Visit extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['practitioner_id','employee_id','attendedDate','visitstate_id'];
+
     protected $casts = [
         'attendedDate'=>'date',
     ];
@@ -18,6 +20,15 @@ class Visit extends Model
     public function report()
     {
         return  $this->hasOne(Visitreport::class);
+    }
+
+    public function practitioners()
+    {
+        return $this->belongsTo(Practitioner::class, 'practitioner_id');
+    }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class,'employee_id');
     }
 
     public function scopeDone($query)

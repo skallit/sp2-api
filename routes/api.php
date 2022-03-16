@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +20,7 @@ Route::post('register', 'App\Http\Controllers\API\LoginController@register');
 Route::middleware('auth:api')->group(function(){
     // Booking routes
     Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::get('getVisit', [\App\Http\Controllers\API\VisitController::class, 'getVisit']);
+    Route::get('getPractitioners', [\App\Http\Controllers\API\VisitController::class, 'getPractitioners']);
+    Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'store']);
 });

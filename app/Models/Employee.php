@@ -18,6 +18,10 @@ class Employee extends Model
         return $this->belongsTo(Sectordistrict::class);
     }
 
+    public function employee(){
+        return $this->hasMany(Visit::class);
+    }
+
     /**
     * @param  \Illuminate\Database\Eloquent\Builder  $query
     **/

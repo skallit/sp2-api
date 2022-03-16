@@ -9,6 +9,8 @@ class Practitioner extends Model
 {
     use HasFactory;
 
+    //protected $fillable = ['lastName','firstName','address','tel','notorietyCoeff','complementarySpeciality','sectordistrict_id','drivingLicense','company_id'];
+
     public function visits()
     {
         return $this->hasMany(Visit::class)->orderBy('attentedDate','DESC');
