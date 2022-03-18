@@ -22,5 +22,6 @@ Route::middleware('auth:api')->group(function(){
     Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
     Route::get('getVisit', [\App\Http\Controllers\API\VisitController::class, 'getVisit']);
     Route::get('getPractitioners', [\App\Http\Controllers\API\VisitController::class, 'getPractitioners']);
-    Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'store']);
+    Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'createVisit']);
+    Route::delete('visit/delete/{visit}', [\App\Http\Controllers\API\VisitController::class, 'destroy'])->name('visit.destroy');
 });

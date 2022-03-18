@@ -52,6 +52,20 @@ class VisitController extends Controller
     }
 
     /**
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public function createVisit(Request $request)
+    {
+        $visit = new Visit();
+        $visit->practitioner_id = $request->practitioner_id;
+        $visit->employee_id = Auth::user()->id;
+        $visit->attendedDate = $request->attendedDate;
+        $visit->visitstate_id = $request->visitstate_id;
+        return response()->json(['success'=> $visit], $this->successStatus);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,12 +73,7 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        $visit = new Visit();
-        $visit->practitioner_id = $request->practitioner_id;
-        $visit->employee_id = Auth::user()->id;
-        $visit->attendedDate = $request->attendedDate;
-        $visit->visitstate_id = $request->visitstate_id;
-        return $visit->save();
+        //
     }
 
     /**
@@ -109,6 +118,7 @@ class VisitController extends Controller
      */
     public function destroy(Visit $visit)
     {
-        //
+        $data = Visit::find($visit->id)->delete();
+        return response()->json(['success'=> $data], $this->successStatus);
     }
 }
