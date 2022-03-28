@@ -21,6 +21,7 @@ Route::middleware('auth:api')->group(function(){
     // Booking routes
     Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
     Route::get('getPlannedVisit', [\App\Http\Controllers\API\VisitController::class, 'getPlannedVisit']);
+    Route::get('getFinishedVisit', [\App\Http\Controllers\API\VisitController::class, 'getFinishedVisit']);
     Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'createVisit']);
     Route::get('getVisitById/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitById']);
     Route::delete('deleteVisit/{id}', [\App\Http\Controllers\API\VisitController::class, 'deleteVisit']);

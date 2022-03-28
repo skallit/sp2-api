@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Models\Practitioner;
 use App\Models\Visit;
 use App\Models\Visitreport;
+use App\Models\Visitstate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,20 +21,21 @@ class VisitController extends Controller
      */
     public function getPlannedVisit()
     {
-//        $visits = [];
-//        $visitsToDisplay = Visit::all();
-//        foreach ($visitsToDisplay as $visitToDisplay){
-//            $visit = [];
-//
-//            $visit['attendedDate'] = Carbon::parse($visitToDisplay->attendedDate)->format('d/m/Y H:i:s');
-//            $visit['practitioner'] = Practitioner::find($visitToDisplay->practitioner_id)->firstname.' '.Practitioner::find($visitToDisplay->practitioner_id)->lastname;
-//            $visit['address'] = Practitioner::find($visitToDisplay->practitioner_id)->address;
-//            $visits[] = $visit;
-//        }
         $visits = Visit::with('employee')
             ->with('practitioners')
             ->where('employee_id', '=', Auth::id())
             ->where('visitstate_id','=','1' and '3')
+            ->get();
+
+        return $visits;
+    }
+
+    public function getFinishedVisit()
+    {
+        $visits = Visit::with('employee')
+            ->with('practitioners')
+            ->where('employee_id', '=', Auth::id())
+            ->where('visitstate_id','=','2')
             ->get();
 
         return $visits;
@@ -48,12 +51,18 @@ class VisitController extends Controller
 //        }else{
 //            return response('Vous n\'êtes pas autorisé à accéder à cette page.');
 //        }
-        $visit = Visit::with('employee')
-            ->with('practitioners')
-            ->where('id', $id)
-            ->get();
 
-        return $visit;
+        $visit = Visit::find($id);
+
+        $visitView['id'] = $visit->id;
+        $visitView['practitioner_id'] = Practitioner::find($visit->practitioner_id);
+        $visitView['employee_id'] = Employee::find($visit->employee_id);
+        $visitView['address'] = Practitioner::find($visit->practitioner_id)->address;
+        $visitView['attendedDate'] = $visit->attendedDate;
+        $visitView['visitstate_id'] = Visitstate::find($visit->visitstate_id);
+
+        return $visitView;
+
     }
 
     //public function createVisitReport($id)
