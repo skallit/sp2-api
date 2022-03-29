@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,6 @@ Route::middleware('auth:api')->group(function(){
     Route::get('getVisitById/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitById']);
     Route::delete('deleteVisit/{id}', [\App\Http\Controllers\API\VisitController::class, 'deleteVisit']);
     Route::get('getPractitioners', [\App\Http\Controllers\API\VisitController::class, 'getPractitioners']);
+    //Expense
+    Route::get('getExpensePackageType',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageType']);
 });
