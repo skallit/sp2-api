@@ -16,7 +16,7 @@ use Database\Seeders\Traits\Truncatable;
 class ExpensesheetSeeder extends Seeder
 {
     use Truncatable,Seedfield;
-    
+
     /**
      * Run the database seeds.
      *
@@ -49,8 +49,10 @@ class ExpensesheetSeeder extends Seeder
         foreach ($years as $year){
             foreach($months as $month)
             {
-                $firstDigits = ($month=12)?$year+1:$year;
-                $lastDigits = fmod($month,12)+1;
+                $firstDigits = ($month==12)?$year+1:$year;
+                $lastDigits = $month+1;
+                $lastDigits = ($lastDigits==13)?1:$lastDigits;
+//              $lastDigits = fmod($month,12)+1;
                 $zero=($month<9 || $month==12) ? '0':'';
 
                 $data['ref']= (string)$firstDigits.(string)$zero.(string)$lastDigits;
