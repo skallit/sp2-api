@@ -62,13 +62,13 @@ class VisitController extends Controller
         $visitView['visitstate_id'] = Visitstate::find($visit->visitstate_id);
 
         return $visitView;
-
     }
 
-    //public function createVisitReport($id)
-    //{
-        //
-    //}
+    public function updateVisit(Visit $visit, Request $request)
+    {
+        $update = Visit::find($visit->id);
+        //$update =
+    }
 
     public function getPractitioners()
     {

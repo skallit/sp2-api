@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Models\Visit;
 use App\Models\Visitreport;
+use App\Models\Visitreportstate;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class VisitReportController extends Controller
 {
@@ -18,6 +20,20 @@ class VisitReportController extends Controller
     public function index()
     {
         //
+    }
+
+    public function getVisitReport($id)
+    {
+        $visitReport = Visitreport::find($id);
+
+        $visitReportView['id'] = $visitReport->id;
+        $visitReportView['visit_id'] = Visit::find($visitReport->visit_id);
+        $visitReportView['creationDate'] = $visitReport->creationDate;
+        $visitReportView['comment'] = $visitReport->comment;
+        $visitReportView['starScore'] = $visitReport->starScore;
+        $visitReportView['visitreportstate_id'] = Visitreportstate::find($visitReport->visitreportstate_id);
+
+        return $visitReportView;
     }
 
     /**

@@ -23,6 +23,8 @@ Route::middleware('auth:api')->group(function(){
     Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
     Route::get('getPlannedVisit', [\App\Http\Controllers\API\VisitController::class, 'getPlannedVisit']);
     Route::get('getFinishedVisit', [\App\Http\Controllers\API\VisitController::class, 'getFinishedVisit']);
+    Route::get('getMedecines', [\App\Http\Controllers\API\MedecineController::class, 'getMedecines']);
+    Route::get('getVisitReport/{id}', [\App\Http\Controllers\API\VisitReportController::class, 'getVisitReport']);
     Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'createVisit']);
     Route::get('getVisitById/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitById']);
     Route::delete('deleteVisit/{id}', [\App\Http\Controllers\API\VisitController::class, 'deleteVisit']);

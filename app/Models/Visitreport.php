@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Visitreport extends Model
 {
     use HasFactory;
+
+    public function medecines()
+    {
+        return $this->hasMany(Medecine::class);
+    }
 }
