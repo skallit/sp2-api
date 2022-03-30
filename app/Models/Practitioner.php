@@ -9,6 +9,7 @@ class Practitioner extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['lastname','firstname','complementarySpeciality','address','email','website','meeting_online','tel','status'];
     //protected $fillable = ['lastName','firstName','address','tel','notorietyCoeff','complementarySpeciality','sectordistrict_id','drivingLicense','company_id'];
 
     public function visits()
