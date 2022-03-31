@@ -18,6 +18,10 @@ class CreatePractitionersTable extends Migration
             $table->string('lastname')->nullable();
             $table->string('firstname')->nullable();
             $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
+            $table->string('meeting_online')->nullable();
+            $table->string('status')->nullable();
             $table->string('tel')->nullable();
             $table->integer('notorietyCoeff')->nullable();
             $table->string('complementarySpeciality', 50)->nullable();

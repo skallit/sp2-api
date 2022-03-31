@@ -70,13 +70,6 @@ class VisitController extends Controller
         //$update =
     }
 
-    public function getPractitioners()
-    {
-        $practitioners = Practitioner::all();
-
-        return $practitioners;
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -157,24 +150,16 @@ class VisitController extends Controller
     }
 
 
-    /**
-     * @param $id
-     * @return bool|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     */
-    public function deleteVisit($id)
+
+    public function cancelVisit(Visit $visit)
     {
         //$visit = Visit::all()->where('id','=',$id);
         //dd($visit);
-        $visit = Visit::where('id', $id)->first();
         //dd($visit->employee_id);
-        if($visit->employee_id == Auth::id()){
-            $delete = Visitreport::where('visit_id',$id)->delete()
-                && Visit::where('id',$id)->delete();
-            return $delete;
-        }
-        else {
-            return response('Vous n\'êtes pas autorisé à supprimer cette visite.');
-        }
+        $data = Visit::find($visit->id);
+        $data->visitstate_id=4;
+        return $data->save();
         //return $visit->delete();
     }
+
 }
