@@ -30,5 +30,6 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('deleteVisit/{id}', [\App\Http\Controllers\API\VisitController::class, 'deleteVisit']);
     Route::get('getPractitioners', [\App\Http\Controllers\API\VisitController::class, 'getPractitioners']);
     //Expense
-    Route::get('getExpensePackageType',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageType']);
+    Route::get('getExpensePackageTypes',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageTypes']);
+    Route::post('postExpensePackageType/{id}',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'postExpensePackageType']);
 });
