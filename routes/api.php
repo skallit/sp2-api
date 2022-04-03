@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -24,12 +23,12 @@ Route::middleware('auth:api')->group(function(){
     Route::get('getPlannedVisit', [\App\Http\Controllers\API\VisitController::class, 'getPlannedVisit']);
     Route::get('getFinishedVisit', [\App\Http\Controllers\API\VisitController::class, 'getFinishedVisit']);
     Route::get('getMedecines', [\App\Http\Controllers\API\MedecineController::class, 'getMedecines']);
+    Route::get('getVisitsByPractitioner/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitsByPractitioner']);
     Route::get('getVisitReport/{id}', [\App\Http\Controllers\API\VisitReportController::class, 'getVisitReport']);
     Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'createVisit']);
+    Route::post('practitioner/store', [\App\Http\Controllers\API\PractitionerController::class, 'createPractitioner']);
     Route::get('getVisitById/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitById']);
-    Route::delete('deleteVisit/{id}', [\App\Http\Controllers\API\VisitController::class, 'deleteVisit']);
-    Route::get('getPractitioners', [\App\Http\Controllers\API\VisitController::class, 'getPractitioners']);
-    //Expense
-    Route::get('getExpensePackageTypes',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageTypes']);
-    Route::post('postExpensePackageType/{id}',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'postExpensePackageType']);
+    Route::get('getPractitionerById/{id}', [\App\Http\Controllers\API\PractitionerController::class, 'getPractitionerById']);
+    Route::put('cancelVisit/{visit}', [\App\Http\Controllers\API\VisitController::class, 'cancelVisit']);
+    Route::get('getPractitioners', [\App\Http\Controllers\API\PractitionerController::class, 'getPractitioners']);
 });

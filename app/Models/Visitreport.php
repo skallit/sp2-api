@@ -13,4 +13,8 @@ class Visitreport extends Model
     {
         return $this->hasMany(Medecine::class);
     }
+
+    public function visits(){
+        $this->belongsTo(Visit::class,'visit_id');
+    }
 }

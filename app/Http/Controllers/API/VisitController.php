@@ -11,6 +11,7 @@ use App\Models\Visitstate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VisitController extends Controller
 {
@@ -62,6 +63,33 @@ class VisitController extends Controller
         $visitView['visitstate_id'] = Visitstate::find($visit->visitstate_id);
 
         return $visitView;
+    }
+
+    public function getVisitsByPractitioner($id)
+    {
+        $practitioner = Practitioner::where("id",$id)
+            ->with('visits')
+            ->first();
+
+
+        foreach ($practitioner->visits as $visit){
+            if ($visit->visitstate_id == 2) {
+                $visitReport = Visitreport::where('visit_id', $visit->id)->get();
+                $visit['visitReport'] = $visitReport;
+            }
+            else{
+                $visit->null;
+            }
+        }
+       // $visits = Visit::where('practitioner_id',$id)->get();
+//        $visits = DB::table('practitioners')
+//            ->join('visits', 'practitioners.id', '=', 'visits.practitioner_id')
+//            ->join('visitreports', 'visits.id', '=', 'visitreports.visit_id')
+//            ->where('practitioner_id', $id)
+//            ->get();
+
+
+        return $practitioner;
     }
 
     public function updateVisit(Visit $visit, Request $request)

@@ -29,6 +29,7 @@ class PractitionerController extends Controller
         $practitionerView['lastname'] = $practitioner->lastname;
         $practitionerView['firstname'] = $practitioner->firstname;
         $practitionerView['address'] = $practitioner->address;
+        $practitionerView['email'] = $practitioner->email;
         $practitionerView['website'] = $practitioner->website;
         $practitionerView['meeting_online'] = $practitioner->meeting_online;
         $practitionerView['status'] = $practitioner->status;
@@ -50,5 +51,11 @@ class PractitionerController extends Controller
         $practitioner = Practitioner::create($input);
 
         return response()->json(['success' => $practitioner], $this->successStatus);
+    }
+
+    public function editPractitioner(Practitioner $practitioner)
+    {
+        $data = Practitioner::find($practitioner->id);
+
     }
 }

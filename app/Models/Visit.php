@@ -14,7 +14,7 @@ class Visit extends Model
     protected $fillable = ['practitioner_id','employee_id','attendedDate','visitstate_id'];
 
     protected $casts = [
-        'attendedDate'=>'date',
+        'attendedDate'=>'datetime',
     ];
 
     public function report()
@@ -34,5 +34,10 @@ class Visit extends Model
     public function scopeDone($query)
     {
         $query->where('visitstate_id',Visitstate::firstWhere('name','done')->id);
+    }
+
+    public function visitsReport()
+    {
+            return $this->hasMany(Visitreport::class);
     }
 }

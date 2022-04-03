@@ -14,7 +14,7 @@ class Practitioner extends Model
 
     public function visits()
     {
-        return $this->hasMany(Visit::class)->orderBy('attentedDate','DESC');
+        return $this->hasMany(Visit::class)->orderBy('attendedDate','DESC');
     }
 
     public function sectordistrict()
