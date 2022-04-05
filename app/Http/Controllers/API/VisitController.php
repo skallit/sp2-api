@@ -74,11 +74,8 @@ class VisitController extends Controller
 
         foreach ($practitioner->visits as $visit){
             if ($visit->visitstate_id == 2) {
-                $visitReport = Visitreport::where('visit_id', $visit->id)->get();
-                $visit['visitReport'] = $visitReport;
-            }
-            else{
-                $visit->null;
+                $visitreport = Visitreport::where('visit_id', $visit->id)->get();
+                $visit['visitReport'] = $visitreport;
             }
         }
        // $visits = Visit::where('practitioner_id',$id)->get();
