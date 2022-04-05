@@ -32,4 +32,8 @@ Route::middleware('auth:api')->group(function(){
     Route::put('cancelVisit/{visit}', [\App\Http\Controllers\API\VisitController::class, 'cancelVisit']);
     Route::get('getPractitioners', [\App\Http\Controllers\API\PractitionerController::class, 'getPractitioners']);
     Route::get('showProfile/{id}', [\App\Http\Controllers\API\EmployeeController::class, 'showProfile']);
+    //Expense
+    Route::get('getExpensePackageTypes',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageTypes']);
+    Route::post('postExpensePackageType/{id}',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'postExpensePackageType']);
+
 });
