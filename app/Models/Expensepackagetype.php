@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Expensepackagetype extends Model
 {
     use HasFactory;
+    protected $fillable = ["name", "amount", "unit"];
+
 }

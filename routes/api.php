@@ -31,4 +31,8 @@ Route::middleware('auth:api')->group(function(){
     Route::get('getPractitionerById/{id}', [\App\Http\Controllers\API\PractitionerController::class, 'getPractitionerById']);
     Route::put('cancelVisit/{visit}', [\App\Http\Controllers\API\VisitController::class, 'cancelVisit']);
     Route::get('getPractitioners', [\App\Http\Controllers\API\PractitionerController::class, 'getPractitioners']);
+    //Expense
+    Route::get('getExpensePackageTypes',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageTypes']);
+    Route::post('postExpensePackageType/{id}',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'postExpensePackageType']);
+
 });
