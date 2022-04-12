@@ -22,7 +22,7 @@ class LoginController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken(env('APP_NAME'))->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            return response()->json(['success' => $success, 'user_id' => $user->id], $this->successStatus);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
@@ -55,4 +55,11 @@ class LoginController extends Controller
         return response()->json(['success' => $employee], $this->successStatus);
     }
 
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+        $token->revoke();
+        $response = ["message" => "Vous êtes désormais déconnecté."];
+        return response($response, 200);
+    }
 }

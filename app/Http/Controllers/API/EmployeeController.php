@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -15,5 +16,14 @@ class EmployeeController extends Controller
             ->first();
 
         return $employee;
+    }
+
+    public function editAvatarProfile(Employee $employee, Request $request)
+    {
+        $data = $request->all([
+            'avatar'
+        ]);
+        $avatarEmployee = Employee::find($data['avatar'])->update();
+        return $avatarEmployee;
     }
 }

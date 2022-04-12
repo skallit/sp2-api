@@ -36,6 +36,7 @@ class EmployeeFactory extends Factory
             'postalCode'=>$this->faker->postcode,
             'firstname'=>$firstname,
             'lastname'=>$lastname,
+            'avatar'=>$this->faker->imageUrl(512,512),
             'email'=> Str::slug($lastname).'.'.Str::slug(Str::between($firstname,0,1)).'@safi.com',
             'password'=>Hash::make('pwsio'),
             'address'=>$this->faker->address,

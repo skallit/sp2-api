@@ -25,20 +25,10 @@ class PractitionerController extends Controller
     {
         $practitioner = Practitioner::find($id);
 
-        $practitionerView['id'] = $practitioner->id;
-        $practitionerView['lastname'] = $practitioner->lastname;
-        $practitionerView['firstname'] = $practitioner->firstname;
-        $practitionerView['address'] = $practitioner->address;
-        $practitionerView['email'] = $practitioner->email;
-        $practitionerView['website'] = $practitioner->website;
-        $practitionerView['meeting_online'] = $practitioner->meeting_online;
-        $practitionerView['status'] = $practitioner->status;
-        $practitionerView['tel'] = $practitioner->tel;
-        $practitionerView['notorietyCoeff'] = $practitioner->notorietyCoeff;
-        $practitionerView['complementarySpeciality'] = $practitioner->complementarySpeciality;
-        $practitionerView['sectordistrict_id'] = Sectordistrict::find($practitioner->sectordistrict_id);
 
-        return $practitionerView;
+        $practitioner['sectordistrict_id'] = Sectordistrict::find($practitioner->sectordistrict_id);
+
+        return $practitioner;
     }
 
     /**
@@ -56,6 +46,5 @@ class PractitionerController extends Controller
     public function editPractitioner(Practitioner $practitioner)
     {
         $data = Practitioner::find($practitioner->id);
-
     }
 }

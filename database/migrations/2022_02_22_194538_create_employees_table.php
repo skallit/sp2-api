@@ -21,6 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('postalCode')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('email', 45)->nullable();
             $table->text('password')->nullable();
             $table->string('address')->nullable();
