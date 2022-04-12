@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Expensesheet extends Model
 {
     use HasFactory;
+
+    protected $fillable=['employee_id','sheetstate_id','creationDate','ref','unit'];
 }
