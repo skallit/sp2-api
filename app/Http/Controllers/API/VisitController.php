@@ -24,6 +24,7 @@ class VisitController extends Controller
     {
         $visits = Visit::with('employee')
             ->with('practitioners')
+            ->whereDate('attendedDate', now()->addDay())
             ->where('employee_id', '=', Auth::id())
             ->where('visitstate_id','=','1' and '3')
             ->get();
@@ -35,6 +36,7 @@ class VisitController extends Controller
     {
         $visits = Visit::with('employee')
             ->with('practitioners')
+            ->whereDate('attendedDate', now())
             ->where('employee_id', '=', Auth::id())
             ->where('visitstate_id','=','2')
             ->get();

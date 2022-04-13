@@ -19,7 +19,7 @@ Route::post('register', 'App\Http\Controllers\API\LoginController@register');
 
 Route::middleware('auth:api')->group(function(){
     // Booking routes
-    Route::get('user', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::get('employee', [\App\Http\Controllers\API\EmployeeController::class, 'employee']);
     Route::get('getPlannedVisit', [\App\Http\Controllers\API\VisitController::class, 'getPlannedVisit']);
     Route::get('getFinishedVisit', [\App\Http\Controllers\API\VisitController::class, 'getFinishedVisit']);
     Route::get('getMedecines', [\App\Http\Controllers\API\MedecineController::class, 'getMedecines']);

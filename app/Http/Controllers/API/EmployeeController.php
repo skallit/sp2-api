@@ -10,6 +10,14 @@ class EmployeeController extends Controller
 {
     public $successStatus = 200;
 
+    public function employee()
+    {
+        $employees = Employee::with('employee')
+            ->get();
+
+        return $employees;
+    }
+
     public function showProfile($id)
     {
         $employee = Employee::where("id", $id)
