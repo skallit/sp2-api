@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
+use App\Models\Practitioner;
 use App\Models\Visit;
 use App\Models\Visitreport;
 use App\Models\Visitreportstate;
+use App\Models\Visitstate;
 use Illuminate\Http\Request;
 
 class VisitReportController extends Controller
@@ -32,6 +35,21 @@ class VisitReportController extends Controller
         $visitReportView['comment'] = $visitReport->comment;
         $visitReportView['starScore'] = $visitReport->starScore;
         $visitReportView['visitreportstate_id'] = Visitreportstate::find($visitReport->visitreportstate_id);
+
+        return $visitReportView;
+    }
+
+    public function getVisitReportByVisit($id)
+    {
+        $visitreport = Visit::find($id)->join('visitreports', 'visits.id', '=', 'visitreports.visit_id')->where('visitreports.visit_id', '=', $id)->first();
+
+
+        $visitReportView['id'] = $visitreport->id;
+        $visitReportView['visit_id'] = Visit::find($visitreport->visit_id);
+        $visitReportView['creationDate'] = $visitreport->creationDate;
+        $visitReportView['comment'] = $visitreport->comment;
+        $visitReportView['starScore'] = $visitreport->starScore;
+        $visitReportView['visitreportstate_id'] = Visitreportstate::find($visitreport->visitreportstate_id)->name;
 
         return $visitReportView;
     }

@@ -25,7 +25,9 @@ Route::middleware('auth:api')->group(function(){
     Route::get('getMedecines', [\App\Http\Controllers\API\MedecineController::class, 'getMedecines']);
     Route::get('getVisitsByPractitioner/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitsByPractitioner']);
     Route::get('getVisitReport/{id}', [\App\Http\Controllers\API\VisitReportController::class, 'getVisitReport']);
+    Route::get('getVisitReportByVisit/{id}', [\App\Http\Controllers\API\VisitReportController::class, 'getVisitReportByVisit']);
     Route::post('visit/store', [\App\Http\Controllers\API\VisitController::class, 'createVisit']);
+    Route::post('visitreport/store', [\App\Http\Controllers\API\VisitController::class, 'createVisitreport']);
     Route::post('practitioner/store', [\App\Http\Controllers\API\PractitionerController::class, 'createPractitioner']);
     Route::get('getVisitById/{id}', [\App\Http\Controllers\API\VisitController::class, 'getVisitById']);
     Route::get('getPractitionerById/{id}', [\App\Http\Controllers\API\PractitionerController::class, 'getPractitionerById']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\Medecine;
 use App\Models\Practitioner;
 use App\Models\Visit;
 use App\Models\Visitreport;
@@ -76,8 +77,12 @@ class VisitController extends Controller
 
         foreach ($practitioner->visits as $visit){
             if ($visit->visitstate_id == 2) {
-                $visitreport = Visitreport::where('visit_id', $visit->id)->get();
+                $visitreport = Visitreport::where('visit_id', $visit->id)
+                    ->get();
                 $visit['visitReport'] = $visitreport;
+//                $medecine = Medecine::where('quantity')
+//                    ->first();
+//                $visit['medecines'] = $medecine;
             }
         }
        // $visits = Visit::where('practitioner_id',$id)->get();
@@ -122,6 +127,19 @@ class VisitController extends Controller
         $input = $request->all();
         $input['employee_id'] = Auth::user()->id;
         $visit = Visit::create($input);
+
+        return response()->json(['success'=> $visit], $this->successStatus);
+    }
+
+    public function createVisitreport(Request $request)
+    {
+//        $visit = new Visit();
+//        $visit->practitioner_id = $request->practitioner_id;
+//        $visit->employee_id = Auth::user()->id;
+//        $visit->attendedDate = $request->attendedDate;
+//        $visit->visitstate_id = $request->visitstate_id;
+        $input = $request->all();
+        $visit = Visitreport::create($input);
 
         return response()->json(['success'=> $visit], $this->successStatus);
     }

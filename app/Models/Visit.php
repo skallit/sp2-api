@@ -38,6 +38,6 @@ class Visit extends Model
 
     public function visitsReport()
     {
-            return $this->hasMany(Visitreport::class);
+        return $this->hasMany(Visitreport::class);
     }
 }
