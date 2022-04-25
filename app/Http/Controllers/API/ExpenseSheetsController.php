@@ -11,4 +11,10 @@ class ExpenseSheetsController extends Controller
 {
     public $successStatus = 200;
 
+    public function getExpenseSheetClosed(){
+        $expenseSheet= Expensesheet::where('sheetstate_id',2)->get();
+
+        return $expenseSheet;
+    }
+
 }

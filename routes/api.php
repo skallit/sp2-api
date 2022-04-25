@@ -38,6 +38,7 @@ Route::middleware('auth:api')->group(function(){
     //Expense
     Route::get('getExpensePackageTypes',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'getExpensePackageTypes']);
     Route::post('postExpensePackageType/{id}',[\App\Http\Controllers\API\ExpensePackageTypeController::class,'postExpensePackageType']);
+    Route::get('getExpenseSheetClosed', [\App\Http\Controllers\API\ExpenseSheetsController::class,'getExpenseSheetClosed']);
 
 
     //logout

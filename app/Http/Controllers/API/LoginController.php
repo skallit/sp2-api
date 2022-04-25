@@ -33,19 +33,19 @@ class LoginController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['sectordistrict_id']=1;
         $employee = Employee::create($input);
         $success['token'] =  $employee->createToken('MyApp')->accessToken;
-        $success['name'] =  $employee->name;
         return response()->json(['success'=>$success], $this->successStatus);
     }
 

@@ -13,6 +13,8 @@ class Employee extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $fillable = ['firstname','lastname','email','sectordistrict_id'];
+
     public function sectordistrict()
     {
         return $this->belongsTo(Sectordistrict::class);

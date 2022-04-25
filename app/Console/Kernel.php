@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
                 $expenseSheet['ref']=$ref;
                 Expensesheet::create($expenseSheet);
             }
-        })->monthlyOn(28, '00:00')->timezone('Europe/Paris')->evenInMaintenanceMode();
+        })->monthlyOn(6, '00:00')->timezone('Europe/Paris')->evenInMaintenanceMode();
         $schedule->call(function(){
             $expenseSheets = Expensesheet::all();
             foreach ($expenseSheets as $expenseSheet){
@@ -48,6 +48,13 @@ class Kernel extends ConsoleKernel
                 Expensesheet::where('creationDate',$date)->update(['sheetstate_id'=>2]);
             }
         })->monthlyOn(10, '00:00')->timezone('Europe/Paris')->evenInMaintenanceMode();
+        $schedule->call(function(){
+            $expenseSheets = Expensesheet::all();
+            foreach ($expenseSheets as $expenseSheet){
+                $date =Carbon::now()->subMonth()->format('Y-m'.'-28');
+                Expensesheet::where('creationDate',$date)->update(['sheetstate_id'=>3]);
+            }
+        })->monthlyOn(20, '00:00')->timezone('Europe/Paris')->evenInMaintenanceMode();
     }
 
     /**
